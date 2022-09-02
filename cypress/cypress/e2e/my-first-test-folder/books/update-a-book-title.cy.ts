@@ -7,7 +7,7 @@ describe('As a user I can update the title of a book', () => {
     cy.visit(Env.HomepageUrl);
 
     // Update title of a book
-    cy.updateADetail('71', 'title', 'New title');
+    cy.updateADetail('ApiTestTitle', '71', 'title', 'New title');
 
     // Return to the search page and check the details of the book have changed and are correct
     // Go back to the search book page
@@ -17,7 +17,7 @@ describe('As a user I can update the title of a book', () => {
     cy.get(HomepageSelectors.tableCell).should('be.visible').contains('New title');
 
     // Change title back to ApiTestTitle
-    cy.updateADetail('71', 'title', 'ApiTestTitle');
+    cy.updateADetail('ApiTestTitle', '71', 'title', 'ApiTestTitle');
 
     // // Go back to the homepage to check the details have been changed back
     // cy.visit(Env.HomepageUrl);

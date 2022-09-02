@@ -61,7 +61,10 @@ Cypress.Commands.add('addBook', (bookTitle: string, bookDescription: string, boo
   cy.get(UpdatedpageSelectors.addBookButton).click();
 });
 
-Cypress.Commands.add('updateADetail', (bookId: string, updateField: string, updatedDetail: string) => {
+Cypress.Commands.add('updateADetail', (originalTitle: string, bookId: string, updateField: string, updatedDetail: string) => {
+  // Search for the book you want to edit
+  cy.searchBookByTitle(originalTitle);
+
   // Open the update page for the book you want to update
   cy.get(HomepageSelectors.openEditPage(bookId)).click();
   switch (updateField) {
@@ -151,4 +154,9 @@ Cypress.Commands.add('checkDetails', (bookId: string, bookTitle: string, bookDes
   }
   // Check that the book category is correct
   cy.get(UpdatedpageSelectors.chosenBookCategory).should('be.visible').contains(bookCategory);
+});
+
+Cypress.Commands.add('checkADetail', (bookId: string, detailType: string, expectedValue: string) => {
+  // Click the open button to view the details
+  cy.get(HomepageSelectors.openEditPage(bookId)).click();
 });

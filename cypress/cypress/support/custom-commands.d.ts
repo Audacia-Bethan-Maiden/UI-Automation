@@ -19,12 +19,18 @@ declare namespace Cypress {
     /**
     * Request to update one detail of a book.
     */
-    updateADetail(bookId: string, updateField: string, updatedDetail: string): Chainable<Element>
+    // eslint-disable-next-line max-len
+    updateADetail(originalTitle: string, bookId: string, updateField: string, updatedDetail: string): Chainable<Element>
 
     /**
      * Request to check a book's details
      */
     // eslint-disable-next-line max-len
     checkDetails(bookId: string, bookTitle: string, bookDescription: string, bookAuthor: string, publishedYear: string, dateAvailableFrom: string, hasEBook: boolean, bookCategory: string): Chainable<Element>
+
+    /**
+     * Request to check a detail of a book
+     */
+    checkADetail(bookId: string, detailType: string, expectedValue: string)
   }
 }
