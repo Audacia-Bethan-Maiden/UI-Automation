@@ -18,4 +18,6 @@ export default class HomepageSelectors {
   static deleteBookButton(id: string): string {
     return `[data-id="delete-book-from-search-table_${id}"]`;
   }
+
+  static readonly confirmDeleteActionButton = '.action-button';
 }

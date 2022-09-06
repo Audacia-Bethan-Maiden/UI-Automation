@@ -1,23 +1,26 @@
 import Env from '../../../../models/env';
+import HomepageSelectors from '../../../../models/selectors/homepage-selectors';
+
+let bookId = null;
 
 describe('As a user I can delete a book', () => {
+  beforeEach(() => {
+    // Go to the homepage
+    cy.visit(Env.HomepageUrl);
+    // Add a book to be edited
+    cy.addBookApi('Another Test', 'Test Description', 'Test Author', 2022, '2022-09-06', true, 1).then((response) => { bookId = response; });
+  });
   it('Allows a user to delete a book', () => {
     // Go to the homepage
     cy.visit(Env.HomepageUrl);
 
     // Delete a book
-    cy.deleteBook('Test book title', '371');
+    cy.deleteBook('Another Test', bookId);
 
-    // Add another book back?
-    // Click the add book button
-    cy.addBook('Test book title', 'Test book description', 'Test Author', '2022', '2022-08-31', true, 'Fiction');
+    // Search for the book
+    cy.searchBookByTitle('Another Test');
 
-    // Do I need to check that the book has been added again correctly?
-
-    // Go to homepage again
-    cy.visit(Env.HomepageUrl);
-
-    // Search for the book to check it's there
-    cy.searchBookByTitle('Test book title');
+    // Check it has been deleted
+    cy.get(HomepageSelectors.tableCell).should('not.exist');
   });
 });

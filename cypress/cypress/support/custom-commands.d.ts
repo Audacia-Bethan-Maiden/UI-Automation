@@ -14,13 +14,13 @@ declare namespace Cypress {
     * Request to add a book.
     */
     // eslint-disable-next-line max-len
-    addBook(bookTitle: string, bookDescription: string, bookAuthor: string, publishedYear: string, dateAvailableFrom: string, hasEBook: boolean, bookCategory: string): Chainable<Element>
+    addBook(bookTitle: string, bookDescription: string, bookAuthor: string, publishedYear: number, dateAvailableFrom: string, hasEBook: boolean, bookCategory: string): Chainable<Element>
 
     /**
     * Request to update one detail of a book.
     */
     // eslint-disable-next-line max-len
-    updateADetail(originalTitle: string, bookId: string, updateField: string, updatedDetail: string): Chainable<Element>
+    updateADetail(originalTitle: string, originalDetail: string, updateField: string, updatedDetail: string): Chainable<Element>
 
     /**
      * Request to check a book's details
@@ -31,6 +31,22 @@ declare namespace Cypress {
     /**
      * Request to check a detail of a book
      */
-    checkADetail(bookId: string, detailType: string, expectedValue: string)
+    checkADetail(detailType: string, expectedValue: string): Chainable<Element>
+
+    /**
+     * Request to add a book
+     */
+    // eslint-disable-next-line max-len
+    addBookApi(bookTitle: string, bookDescription: string, bookAuthor: string, publishedYear: number, dateAvailableFrom: string, hasEBook: boolean, bookCategory: number): Chainable<Element>
+
+    /**
+     * Request to delete a book
+     */
+    deleteBookApi(bookId: string): Chainable<Element>
+
+    /**
+     * Finds the ID of a book using the url of the updatepage
+     */
+    findBookId(): Chainable<string>
   }
 }

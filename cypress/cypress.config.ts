@@ -21,6 +21,7 @@ export default defineConfig({
     USERNAME: 'username',
     PASSWORD: 'password',
     HOMEPAGE_URL: 'https://audacia-training-automationtesting-ui.azurewebsites.net/',
+    BASE_API_URL: 'https://audacia-training-automationtesting-api.azurewebsites.net/',
   },
   fixturesFolder: false,
   e2e: {

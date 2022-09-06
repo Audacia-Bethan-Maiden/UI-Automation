@@ -1,4 +1,4 @@
-export default class UpdatedpageSelectors {
+export default class AddpageSelectors {
   static readonly toSearchpageButton = '[data-id="to-search-page-from-update-book-button"]';
 
   static inputField(field: string): string {
@@ -11,7 +11,7 @@ export default class UpdatedpageSelectors {
 
   static readonly chosenBookCategory = '.vs__selected';
 
-  static readonly updateBookButton = '.update-button';
+  static readonly addBookButton = '.add-button';
 
   static readonly validationError = '.validation-error';
 }
