@@ -28,7 +28,7 @@ Cypress.Commands.add('deleteBook', (bookTitle: string, bookId: string) => {
   // Confirm delete
   cy.get(HomepageSelectors.confirmDeleteActionButton).contains('Confirm').click();
 
-  // Check that the request returns a 204 status code
+  // Check that the request returns a 200 status code
   cy.wait('@deleteBook').then((intercept) => {
     const { statusCode } = intercept.response;
     expect(statusCode).to.equal(200);
