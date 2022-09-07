@@ -3,9 +3,10 @@ import Env from '../../../../models/env';
 import InputErrors from '../../../../models/error-messages/input-errors';
 import HomepageSelectors from '../../../../models/selectors/homepage-selectors';
 import UpdatedpageSelectors from '../../../../models/selectors/updatepage-selectors';
+import CharlieAndTheChocolateFactory from '../../../../models/test-books/catcf-details';
 
-const bookTitle = 'Book A';
-const bookId = '248';
+const { bookTitle } = CharlieAndTheChocolateFactory;
+const { bookId } = CharlieAndTheChocolateFactory;
 
 describe('As a user I cannot edit a book if I do not use the correct form', () => {
   it('Does not allow a user to edit the title of a book unless the correct form is used', () => {
@@ -171,6 +172,9 @@ describe('As a user I cannot edit a book if I do not use the correct form', () =
   it('Does not allow a user to change the book category unless the right form is used', () => {
     // Go to the homepage
     cy.visit(Env.HomepageUrl);
+
+    // Search for the book
+    cy.searchBookByTitle(bookTitle);
 
     // Click the update button for the book
     cy.get(HomepageSelectors.openEditPage(bookId)).click();

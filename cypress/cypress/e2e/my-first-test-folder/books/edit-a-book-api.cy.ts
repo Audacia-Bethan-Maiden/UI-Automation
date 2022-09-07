@@ -2,6 +2,7 @@ import ApiRoutes from '../../../../models/api-routes/api-routes';
 import Env from '../../../../models/env';
 import HomepageSelectors from '../../../../models/selectors/homepage-selectors';
 import UpdatedpageSelectors from '../../../../models/selectors/updatepage-selectors';
+import TestBooks from '../../../../models/test-books/test-book-details';
 
 let bookId = null;
 describe('As a user I can edit a book', () => {
@@ -9,12 +10,20 @@ describe('As a user I can edit a book', () => {
     // Go to the homepage
     cy.visit(Env.HomepageUrl);
     // Add a book to be edited
-    cy.addBookApi('New Test', 'Test Description', 'Test Author', 2022, '2022-09-06', true, 1).then((response) => { bookId = response; }).then(() => {
+    cy.addBookApi(
+      TestBooks.bookTitle,
+      TestBooks.bookDescription,
+      TestBooks.bookAuthor,
+      TestBooks.publishedYear,
+      TestBooks.availableFrom,
+      TestBooks.hasEBook,
+      1,
+    ).then((response) => { bookId = response; }).then(() => {
       // Go back to the homepage
       cy.visit(Env.HomepageUrl);
 
       // Search for the book you want to edit
-      cy.searchBookByTitle('New Test');
+      cy.searchBookByTitle(TestBooks.bookTitle);
 
       // Open the update page for the book you want to update
       cy.get(HomepageSelectors.openEditPage(bookId)).click();
@@ -25,7 +34,7 @@ describe('As a user I can edit a book', () => {
   });
   it('Allows a user to edit the title of a book', () => {
     // Update the title of a the book
-    cy.updateADetail('New Test', 'New Test', 'title', 'New title');
+    cy.updateADetail(TestBooks.bookTitle, TestBooks.bookTitle, 'title', TestBooks.editedTitle);
 
     // Intecept the request
     cy.intercept(ApiRoutes.updateBookUrl).as('editBook');
@@ -40,12 +49,12 @@ describe('As a user I can edit a book', () => {
     });
 
     // Check that the book has been edited
-    cy.checkADetail('title', 'New title');
+    cy.checkADetail('title', TestBooks.editedTitle);
   });
 
   it('Allows a user to edit the description of a book', () => {
     // Update the description of the book
-    cy.updateADetail('New Test', 'Test Description', 'description', 'New description');
+    cy.updateADetail(TestBooks.bookTitle, TestBooks.bookDescription, 'description', TestBooks.editedDescription);
 
     // Intercept the request
     cy.intercept(ApiRoutes.updateBookUrl).as('editBook');
@@ -60,12 +69,12 @@ describe('As a user I can edit a book', () => {
     });
 
     // Check that the description has been updated
-    cy.checkADetail('description', 'New description');
+    cy.checkADetail('description', TestBooks.editedDescription);
   });
 
   it('Allows the user to edit the author of a book', () => {
     // Update the author of the book
-    cy.updateADetail('New Test', 'Test Author', 'author', 'New Author');
+    cy.updateADetail(TestBooks.bookTitle, TestBooks.bookAuthor, 'author', TestBooks.editedAuthor);
 
     // Intercept the API request
     cy.intercept(ApiRoutes.updateBookUrl).as('editBook');
@@ -80,12 +89,12 @@ describe('As a user I can edit a book', () => {
     });
 
     // Check that the author has been updated
-    cy.checkADetail('author', 'New Author');
+    cy.checkADetail('author', TestBooks.editedAuthor);
   });
 
   it('Allows the user to edit the year a book was published', () => {
     // Update the year published
-    cy.updateADetail('New Test', '2022', 'published-year', '2000');
+    cy.updateADetail(TestBooks.bookTitle, TestBooks.publishedYear.toString(), 'published-year', TestBooks.editedPublishedYear.toString());
 
     // Intercept the request
     cy.intercept(ApiRoutes.updateBookUrl).as('editBook');
@@ -100,12 +109,12 @@ describe('As a user I can edit a book', () => {
     });
 
     // Check that the year published was updated
-    cy.checkADetail('published-year', '2000');
+    cy.checkADetail('published-year', TestBooks.editedPublishedYear.toString());
   });
 
   it('Allows a user to edit the date a book is available from', () => {
     // Update the date available
-    cy.updateADetail('New Test', '2022-09-06', 'available-from', '2022-09-07');
+    cy.updateADetail(TestBooks.bookTitle, TestBooks.availableFrom, 'available-from', TestBooks.editedAvailableFrom);
 
     // Intercept the API request
     cy.intercept(ApiRoutes.updateBookUrl).as('editBook');
@@ -120,12 +129,12 @@ describe('As a user I can edit a book', () => {
     });
 
     // Check the detail was updated
-    cy.checkADetail('available-from', '2022-09-07');
+    cy.checkADetail('available-from', TestBooks.editedAvailableFrom);
   });
 
   it('Allows a user to update the eBook status of a book', () => {
     // Update the eBook status of the book
-    cy.updateADetail('New Test', 'true', 'has-e-book', 'true');
+    cy.updateADetail(TestBooks.bookTitle, TestBooks.hasEBook.toString(), 'has-e-book', TestBooks.editedHasEBook.toString());
 
     // Intercept the API request
     cy.intercept(ApiRoutes.updateBookUrl).as('editBook');
@@ -140,12 +149,12 @@ describe('As a user I can edit a book', () => {
     });
 
     // Check the detail
-    cy.checkADetail('has-e-book', 'true');
+    cy.checkADetail('has-e-book', TestBooks.editedHasEBook.toString());
   });
 
   it('Allows the user to change the category of a book', () => {
     // Update the category of the book
-    cy.updateADetail('New Test', 'Fiction', 'book-category', 'Crime');
+    cy.updateADetail(TestBooks.bookTitle, TestBooks.bookCategory, 'book-category', TestBooks.editedBookCategory);
 
     // Intercept API request
     cy.intercept(ApiRoutes.updateBookUrl).as('editBook');
@@ -160,6 +169,6 @@ describe('As a user I can edit a book', () => {
     });
 
     // Check the detail was updated correctly
-    cy.checkADetail('book-category', 'Crime');
+    cy.checkADetail('book-category', TestBooks.editedBookCategory);
   });
 });

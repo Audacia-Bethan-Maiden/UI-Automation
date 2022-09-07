@@ -198,6 +198,9 @@ Cypress.Commands.add('checkADetail', (detailType: string, expectedValue: string)
         cy.get(UpdatedpageSelectors.inputField('has-e-book')).should('be.visible').should('be.checked');
       } else if (expectedValue === 'false') {
         cy.get(UpdatedpageSelectors.inputField('has-e-book')).should('be.visible').should('not.be.checked');
+      } else {
+        // Intentionally make the test fail if the string is not true or false
+        cy.get(UpdatedpageSelectors.inputField('has-e-book')).should('not.be.visible');
       }
       break;
 

@@ -3,6 +3,7 @@ import Env from '../../../../models/env';
 import InputErrors from '../../../../models/error-messages/input-errors';
 import AddpageSelectors from '../../../../models/selectors/addpage-selectors';
 import HomepageSelectors from '../../../../models/selectors/homepage-selectors';
+import TestBooks from '../../../../models/test-books/test-book-details';
 
 describe('As a user I cannot add a book if I use the wrong form', () => {
   beforeEach(() => {
@@ -15,16 +16,16 @@ describe('As a user I cannot add a book if I use the wrong form', () => {
 
   it('Does not allow a user to add a book if they do not specify a book title', () => {
     // Input the book description
-    cy.get(AddpageSelectors.inputField('description')).type('bookDescription');
+    cy.get(AddpageSelectors.inputField('description')).type(TestBooks.bookDescription);
 
     // Input the author
-    cy.get(AddpageSelectors.inputField('author')).type('bookAuthor');
+    cy.get(AddpageSelectors.inputField('author')).type(TestBooks.bookAuthor);
 
     // Input the year published
-    cy.get(AddpageSelectors.inputField('published-year')).type('2000');
+    cy.get(AddpageSelectors.inputField('published-year')).type(TestBooks.publishedYear.toString());
 
     // Input the date available from
-    cy.get(AddpageSelectors.inputField('available-from')).type('2022-08-30');
+    cy.get(AddpageSelectors.inputField('available-from')).type(TestBooks.availableFrom);
 
     // Click has an eBook
     cy.get(AddpageSelectors.inputField('has-e-book')).click();
@@ -33,7 +34,7 @@ describe('As a user I cannot add a book if I use the wrong form', () => {
     cy.get(AddpageSelectors.openDropdownCategoryList).click();
 
     // Pick the book category
-    cy.get(AddpageSelectors.bookCategoryOptionSelect).contains('Crime').should('be.visible').click();
+    cy.get(AddpageSelectors.bookCategoryOptionSelect).contains(TestBooks.bookCategory).should('be.visible').click();
 
     // Intercetp the API request
     cy.intercept(ApiRoutes.addBookUrl).as('addBook');
@@ -53,16 +54,16 @@ describe('As a user I cannot add a book if I use the wrong form', () => {
 
   it('Does not allow a user to add a book if they do not specify a book description', () => {
     // Input the book title
-    cy.get(AddpageSelectors.inputField('title')).type('bookTitle');
+    cy.get(AddpageSelectors.inputField('title')).type(TestBooks.bookTitle);
 
     // Input the author
-    cy.get(AddpageSelectors.inputField('author')).type('bookAuthor');
+    cy.get(AddpageSelectors.inputField('author')).type(TestBooks.bookAuthor);
 
     // Input the year published
-    cy.get(AddpageSelectors.inputField('published-year')).type('2000');
+    cy.get(AddpageSelectors.inputField('published-year')).type(TestBooks.publishedYear.toString());
 
     // Input the date available from
-    cy.get(AddpageSelectors.inputField('available-from')).type('2022-08-30');
+    cy.get(AddpageSelectors.inputField('available-from')).type(TestBooks.availableFrom);
 
     // Click has an eBook
     cy.get(AddpageSelectors.inputField('has-e-book')).click();
@@ -71,7 +72,7 @@ describe('As a user I cannot add a book if I use the wrong form', () => {
     cy.get(AddpageSelectors.openDropdownCategoryList).click();
 
     // Pick the book category
-    cy.get(AddpageSelectors.bookCategoryOptionSelect).contains('Crime').should('be.visible').click();
+    cy.get(AddpageSelectors.bookCategoryOptionSelect).contains(TestBooks.bookCategory).should('be.visible').click();
 
     // Intercetp the API request
     cy.intercept(ApiRoutes.addBookUrl).as('addBook');
@@ -91,16 +92,16 @@ describe('As a user I cannot add a book if I use the wrong form', () => {
 
   it('Does not allow a user to add a book if they do not specify an author', () => {
     // Input the title
-    cy.get(AddpageSelectors.inputField('title')).type('bookTitle');
+    cy.get(AddpageSelectors.inputField('title')).type(TestBooks.bookTitle);
 
     // Input the book description
-    cy.get(AddpageSelectors.inputField('description')).type('bookDescription');
+    cy.get(AddpageSelectors.inputField('description')).type(TestBooks.bookDescription);
 
     // Input the year published
-    cy.get(AddpageSelectors.inputField('published-year')).type('2000');
+    cy.get(AddpageSelectors.inputField('published-year')).type(TestBooks.publishedYear.toString());
 
     // Input the date available from
-    cy.get(AddpageSelectors.inputField('available-from')).type('2022-08-30');
+    cy.get(AddpageSelectors.inputField('available-from')).type(TestBooks.availableFrom);
 
     // Click has an eBook
     cy.get(AddpageSelectors.inputField('has-e-book')).click();
@@ -109,7 +110,7 @@ describe('As a user I cannot add a book if I use the wrong form', () => {
     cy.get(AddpageSelectors.openDropdownCategoryList).click();
 
     // Pick the book category
-    cy.get(AddpageSelectors.bookCategoryOptionSelect).contains('Crime').should('be.visible').click();
+    cy.get(AddpageSelectors.bookCategoryOptionSelect).contains(TestBooks.bookCategory).should('be.visible').click();
 
     // Intercetp the API request
     cy.intercept(ApiRoutes.addBookUrl).as('addBook');
@@ -129,16 +130,16 @@ describe('As a user I cannot add a book if I use the wrong form', () => {
 
   it('Does not allow a user to add a book if they do not specify a published year', () => {
     // Input the title
-    cy.get(AddpageSelectors.inputField('title')).type('bookTitle');
+    cy.get(AddpageSelectors.inputField('title')).type(TestBooks.bookTitle);
 
     // Input the book description
-    cy.get(AddpageSelectors.inputField('description')).type('bookDescription');
+    cy.get(AddpageSelectors.inputField('description')).type(TestBooks.bookDescription);
 
     // Input the year published
-    cy.get(AddpageSelectors.inputField('author')).type('bookAuthor');
+    cy.get(AddpageSelectors.inputField('author')).type(TestBooks.bookAuthor);
 
     // Input the date available from
-    cy.get(AddpageSelectors.inputField('available-from')).type('2022-08-30');
+    cy.get(AddpageSelectors.inputField('available-from')).type(TestBooks.availableFrom);
 
     // Click has an eBook
     cy.get(AddpageSelectors.inputField('has-e-book')).click();
@@ -147,7 +148,7 @@ describe('As a user I cannot add a book if I use the wrong form', () => {
     cy.get(AddpageSelectors.openDropdownCategoryList).click();
 
     // Pick the book category
-    cy.get(AddpageSelectors.bookCategoryOptionSelect).contains('Crime').should('be.visible').click();
+    cy.get(AddpageSelectors.bookCategoryOptionSelect).contains(TestBooks.bookCategory).should('be.visible').click();
 
     // Intercetp the API request
     cy.intercept(ApiRoutes.addBookUrl).as('addBook');
@@ -166,16 +167,16 @@ describe('As a user I cannot add a book if I use the wrong form', () => {
 
   it('Does not allow a user to add a book if they do not specify a date available from', () => {
     // Input the title
-    cy.get(AddpageSelectors.inputField('title')).type('bookTitle');
+    cy.get(AddpageSelectors.inputField('title')).type(TestBooks.bookTitle);
 
     // Input the book description
-    cy.get(AddpageSelectors.inputField('description')).type('bookDescription');
+    cy.get(AddpageSelectors.inputField('description')).type(TestBooks.bookDescription);
 
     // Input the year published
-    cy.get(AddpageSelectors.inputField('author')).type('bookAuthor');
+    cy.get(AddpageSelectors.inputField('author')).type(TestBooks.bookAuthor);
 
     // Input the date available from
-    cy.get(AddpageSelectors.inputField('published-year')).type('2022');
+    cy.get(AddpageSelectors.inputField('published-year')).type(TestBooks.publishedYear.toString());
 
     // Click has an eBook
     cy.get(AddpageSelectors.inputField('has-e-book')).click();
@@ -184,7 +185,7 @@ describe('As a user I cannot add a book if I use the wrong form', () => {
     cy.get(AddpageSelectors.openDropdownCategoryList).click();
 
     // Pick the book category
-    cy.get(AddpageSelectors.bookCategoryOptionSelect).contains('Crime').should('be.visible').click();
+    cy.get(AddpageSelectors.bookCategoryOptionSelect).contains(TestBooks.bookCategory).should('be.visible').click();
 
     // Intercetp the API request
     cy.intercept(ApiRoutes.addBookUrl).as('addBook');
@@ -203,19 +204,19 @@ describe('As a user I cannot add a book if I use the wrong form', () => {
 
   it('Does not allow a user to add a book if they do not specify a book category', () => {
     // Input the title
-    cy.get(AddpageSelectors.inputField('title')).type('bookTitle');
+    cy.get(AddpageSelectors.inputField('title')).type(TestBooks.bookTitle);
 
     // Input the book description
-    cy.get(AddpageSelectors.inputField('description')).type('bookDescription');
+    cy.get(AddpageSelectors.inputField('description')).type(TestBooks.bookDescription);
 
     // Input the author
-    cy.get(AddpageSelectors.inputField('author')).type('bookAuthor');
+    cy.get(AddpageSelectors.inputField('author')).type(TestBooks.bookAuthor);
 
     // Input the year published
-    cy.get(AddpageSelectors.inputField('published-year')).type('2000');
+    cy.get(AddpageSelectors.inputField('published-year')).type(TestBooks.publishedYear.toString());
 
     // Input the date available from
-    cy.get(AddpageSelectors.inputField('available-from')).type('2022-08-30');
+    cy.get(AddpageSelectors.inputField('available-from')).type(TestBooks.availableFrom);
 
     // Click has an eBook
     cy.get(AddpageSelectors.inputField('has-e-book')).click();
