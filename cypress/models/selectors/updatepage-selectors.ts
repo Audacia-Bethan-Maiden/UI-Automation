@@ -11,6 +11,8 @@ export default class UpdatedpageSelectors {
 
   static readonly chosenBookCategory = '.vs__selected';
 
+  static readonly clearBookCategory = '.vs__clear';
+
   static readonly updateBookButton = '.update-button';
 
   static readonly validationError = '.validation-error';
