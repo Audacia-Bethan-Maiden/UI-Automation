@@ -1,6 +1,8 @@
 export default class GridfoxSelectors {
   static readonly nameField = '.font-sans';
 
+  static readonly todaysDate = '.datepicker-dropdown__button';
+
   static readonly startDatePicker = ':nth-child(3) > .mt-2 > .g-form-field > .datepicker > input';
 
   static readonly endDatePicker = ':nth-child(4) > .mt-2 > .g-form-field > .datepicker > input';
@@ -30,6 +32,8 @@ export default class GridfoxSelectors {
   static readonly extraNotesInput = '.ProseMirror';
 
   static readonly approvedButton = '.text-white > .feather';
+
+  static readonly numberOfDays = ':nth-child(10) > .mt-2 > .g-form-field > input';
 
   static readonly submitButton = '.px-6';
 

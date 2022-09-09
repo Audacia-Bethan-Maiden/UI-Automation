@@ -19,6 +19,20 @@ describe('As a user I cannot submit a form unless I use the correct form', () =>
     // Choose the date
     cy.get(GridfoxSelectors.calendarCell).contains('28').click();
 
+    // Start time
+    // Open the start time picker
+    cy.get(GridfoxSelectors.startTimePicker).click();
+
+    // Pick the date
+    cy.get(GridfoxSelectors.calendarCell).contains('13').click();
+
+    // End time
+    // Open the end time picker
+    cy.get(GridfoxSelectors.endTimePicker).click();
+
+    // Pick the date
+    cy.get(GridfoxSelectors.calendarCell).contains('11').click();
+
     // Choose the reason
     // Open the drop down list
     cy.get(GridfoxSelectors.openDropDownList).click();
